@@ -26,6 +26,18 @@ public class ShopRepositoryTest {
         Product[] actual = repo.findAll();
     }
 
+    @Test
+    public void shouldThrowException() {
+
+        repo.add(product1);
+        repo.add(product2);
+        repo.add(product3);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+
+            repo.removeById(325);
+        });
+    }
 }
 
 
