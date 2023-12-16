@@ -41,6 +41,20 @@ public class ShopRepository {
         products = addToArray(products, product);
     }
 
+    public void addById(int id) {
+        Product[] tmp = new Product[products.length + 1];
+        for (Product product : products) {
+            if (findById(id) == product) {
+                throw new AlreadyExistsException("Element with id: " + id + " already exists");
+            }
+            if (product.getId() != id) {
+                tmp = addToArray(products, product);
+                products = tmp;
+
+            }
+        }
+    }
+
     public Product[] findAll() {
         return products;
     }
